@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 
 const initialState = {};
 let middleware: any[] = [];
+
 const persistConfig = {
   // Root?
   key: "root",
@@ -13,13 +14,13 @@ const persistConfig = {
   blacklist: [""],
 };
 const persistReduce = persistReducer(persistConfig, reducers);
-// if (import.meta.env.NODE_ENV === "development") {
-const reduxImmutableStateInvariant =
-  require("redux-immutable-state-invariant").default();
-middleware = [...middleware, reduxImmutableStateInvariant, thunk];
-// } else {
-//   middleware = [...middleware, thunk];
-// }
+if (process.env.NODE_ENV === "development") {
+  const reduxImmutableStateInvariant =
+    require("redux-immutable-state-invariant").default();
+  middleware = [...middleware, reduxImmutableStateInvariant, thunk];
+} else {
+  middleware = [...middleware, thunk];
+}
 
 let store = configureStore({
   reducer: persistReduce,
