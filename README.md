@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## What was used?
 
-## Getting Started
+- ⚡️ Next.js 13
+- ⚛️ React 18
+- ⛑ TypeScript
+- 💅 Styled Components - CssInJs for component styling
+- ✨ Tailwind - Utility-first framework for fast customization
+- ✨ Twin Macro - For Tailwind integration with Styled Components
+- 📏 ESLint — To find and fix problems in your code
+- 🎯 Clean Code architecture - Modular, decoupled, testable, maintainable, scalable, reusable, understandable, flexible, SOLID, and adaptable.
 
-First, run the development server:
+## Architecture
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+For this project was used a clean code architecture, this approach was adapted from a React.js project to a Next.js project, using the app folder as a routes' folder. For maintaining the modularization, the project is divided in three other folders:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 📀 Data: The data folder represents the data layer of the clean architecture. This layer represents the interaction with data sources such as databases, APIs, or external services. It contains implementations of business rules related to data management. The data layer is dependent on the domain layer and provides concrete implementations of the interfaces defined in the domain layer.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 📂 Domain : The domain folder represents the domain layer of the clean architecture. The domain layer encapsulates the core business logic and rules of the application. It contains entities that represent the business objects (in this case, all the country entities needed) and use cases that define the actions or operations that can be performed on those entities. The domain layer is independent of other layers and should not have dependencies on frameworks or external libraries.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- 🏞️ UI: The UI folder represents the user interface layer of the clean architecture. This layer is responsible for handling the user interaction and rendering the user interface components. It includes components, pages, hooks, assets, and styles related to the presentation of the application.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+For the features needed for the project were used a variety of approaches and some libraries.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+| Feature                      | Description                                                                                                                                                                                                                                                                                                                                                                                     |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTTP Requests                | It was used [axios](https://www.npmjs.com/package/axios) and the implementation was made inside the 📀 Data Folder.                                                                                                                                                                                                                                                                             |
+| Search Bar and Region Filter | For each one was made a custom component. For the Search Bar was used a native input field that was customized. For the select component used in the Region Filter was used the Select component from [MUI](https://mui.com/material-ui/react-select/), this component was customized following the MUI documentation. All the logic for applying the filtering is on the homeViewModel folder. |
+| Responsive design            | Was used a "Desktop first" approach, and were used the breakpoints provided by [Tailwind](https://tailwindcss.com/docs/screens).                                                                                                                                                                                                                                                                |
+| Routing                      | Were used the provided hooks from Next.js ([useRouter](https://nextjs.org/docs/app/api-reference/functions/use-router) and [useSearchParams](https://nextjs.org/docs/app/api-reference/functions/use-search-params))                                                                                                                                                                            |
+| Dark Mode                    | It was used a combination of [next-themes](https://www.npmjs.com/package/next-themes) and [Tailwind](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually).                                                                                                                                                                                                                       |
+| Unit tests                   | Were applied unit tests only for the components.                                                                                                                                                                                                                                                                                                                                                |
